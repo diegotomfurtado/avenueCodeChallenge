@@ -9,6 +9,8 @@ import com.diegotomfurtado.avenuecode.pages.LoginPage;
 import com.diegotomfurtado.avenuecode.pages.MyTaskPage;
 import com.diegotomfurtado.avenuecode.setup.Setup;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,20 +22,16 @@ public class RedirectUserToTaskPageStep {
 	MyTaskPage myTask;
 	LoginPage login;
 
-	// @Before
+	@Before
 	public void setUpOpenBrowser() throws Exception {
 		browser = Setup.setUpBrowser();
 	}
 
-	// @After
+	@After
 	public void teardown() throws Exception {
 		browser.close();
 		browser.quit();
 	}
-
-	/*
-	 * Scenario 01
-	 */
 
 	@Given("^users already logged in$")
 	public void usersAlreadyLoggedIn() throws Throwable {
@@ -47,21 +45,28 @@ public class RedirectUserToTaskPageStep {
 
 	@Given("^on home page$")
 	public void onHomePage() throws Throwable {
+
 		home = new HomePage(browser);
 	}
 
 	@When("^the user click on My Tasks link in navigation bar$")
-	public void theUserClickOnMyTasksLinkInNavigationBar() throws Throwable {
+	public void theUserClickOnMyTasksLinkInNavigationBar()
+			throws Throwable {
+
 		myTask = home.clickOnMyTaskButton();
 	}
 
 	@Then("^the user will be redirect to My Tasks page$")
-	public void theUserWillBeRedirectToMyTasksPage() throws Throwable {
+	public void theUserWillBeRedirectToMyTasksPage()
+			throws Throwable {
+
 		myTask.findTableTaskOnPage();
 	}
 
 	@When("^the user to click on MyTasks button$")
-	public void theUserToClickOnMyTasksButton() throws Throwable {
+	public void theUserToClickOnMyTasksButton()
+			throws Throwable {
+
 		myTask = home.clickTaksLinkFromNavigationBar();
 	}
 

@@ -10,6 +10,8 @@ import com.diegotomfurtado.avenuecode.pages.LoginPage;
 import com.diegotomfurtado.avenuecode.pages.MyTaskPage;
 import com.diegotomfurtado.avenuecode.setup.Setup;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,12 +22,12 @@ public class TaskConfirmationMessageBelongingToUserStep {
 	LoginPage logIn;
 	HomePage home;
 
-	// @Before
+	 @Before
 	public void setUpOpenBrowser() throws Exception {
 		browser = Setup.setUpBrowser();
 	}
 
-	// @After
+	 @After
 	public void teardown() throws Exception {
 		browser.close();
 		browser.quit();
@@ -46,12 +48,6 @@ public class TaskConfirmationMessageBelongingToUserStep {
 	public void theUserIsOnMyTaskPage() throws Throwable {
 		new HomePage(browser).clickTaksLinkFromNavigationBar();
 	}
-
-	/*
-	 * From the requirments: "Hey John, this is your todo list for today:"
-	 * However, I will not consider the string because is a example. I took a
-	 * small part of that string
-	 */
 
 	@Then("^the user will see their confirmation task message$")
 	public void theUserWillSeeTheirConfirmationTaskMessage() throws Throwable {

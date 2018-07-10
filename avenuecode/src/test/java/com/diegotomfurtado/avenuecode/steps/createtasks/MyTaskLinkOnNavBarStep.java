@@ -9,6 +9,8 @@ import com.diegotomfurtado.avenuecode.pages.HomePage;
 import com.diegotomfurtado.avenuecode.pages.LoginPage;
 import com.diegotomfurtado.avenuecode.setup.Setup;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -20,19 +22,16 @@ public class MyTaskLinkOnNavBarStep {
 	HomePage home;
 	boolean returnInfoLinkTask;
 
-//	@Before
+	@Before
 	public void setUpOpenBrowser() throws Exception {
 		browser = Setup.setUpBrowser();
 	}
 
-//	@After
+	@After
 	public void teardown() throws Exception {
 		browser.close();
+		browser.quit();
 	}
-
-	/*
-	 * Scenario 01
-	 */
 
 	@Given("^User is already logged in$")
 	public void userIsAlreadLoggedIn() throws Throwable {
@@ -42,27 +41,27 @@ public class MyTaskLinkOnNavBarStep {
 		login.fillEmailField("diegotomfurtado@gmail.com");
 		login.fillPasswordField("tomtom123!");
 		login.clickLogin();
+
 	}
 
 	@And("^the user is on home page$")
 	public void theUserIsOnHomePage() throws Throwable {
+
 		home = new HomePage(browser);
 	}
 
 	@When("^the user look for My Tasks link in navigation bar$")
-	public void theUserLookForMyTasksLinkInNavigationBar() throws Throwable {
+	public void theUserLookForMyTasksLinkInNavigationBar()
+			throws Throwable {
+
 		returnInfoLinkTask = home.findMyTaksLinkFromNavBar();
 	}
 
 	@Then("^the user should see the My Tasks link in the navigation bar$")
 	public void theUserShouldSeeTheMyTasksLinkInTheNavigationBar()
 			throws Throwable {
+
 		assertEquals(true, returnInfoLinkTask);
 	}
-
-	/*
-	 * Scenario 02
-	 */
-
 
 }
