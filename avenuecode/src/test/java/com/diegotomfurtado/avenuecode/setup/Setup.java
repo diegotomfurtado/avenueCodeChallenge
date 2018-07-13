@@ -8,9 +8,6 @@ public class Setup {
 
 	public static WebDriver setUpBrowser() {
 
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Drivers\\DrivesAutomations\\chromedriver.exe");
-
 		WebDriver browser = new ChromeDriver();
 		browser.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
